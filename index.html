@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SUPER 教師全國決選書面資料</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    font-size: 11pt;
+    line-height: 1.7;
+    color: #222;
+    background: #fff;
+  }
+
+  /* ===== 封面 ===== */
+  .cover {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .cover h1 {
+    font-size: 36pt;
+    letter-spacing: 12px;
+    color: #1a5276;
+    margin-bottom: 12px;
+  }
+  .cover .subtitle {
+    font-size: 16pt;
+    color: #555;
+    margin-bottom: 50px;
+  }
+  .cover .info-table {
+    text-align: left;
+    font-size: 13pt;
+    line-height: 2.2;
+    border-left: 4px solid #1a5276;
+    padding-left: 24px;
+  }
+  .cover .info-table span.label {
+    color: #888;
+    display: inline-block;
+    width: 120px;
+  }
+  .cover .tagline {
+    margin-top: 60px;
+    font-size: 11pt;
+    color: #888;
+    font-style: italic;
+    max-width: 520px;
+    line-height: 1.8;
+  }
+
+  /* ===== 章節標題 ===== */
+  .section-header {
+    page-break-before: always;
+    background: linear-gradient(135deg, #1a5276, #2980b9);
+    color: #fff;
+    padding: 28px 32px;
+    margin: 0 -15mm 20px -15mm;
+    padding-left: calc(15mm + 32px);
+    padding-right: calc(15mm + 32px);
+  }
+  .section-header .letter {
+    font-size: 42pt;
+    font-weight: 900;
+    float: left;
+    margin-right: 20px;
+    line-height: 1;
+    opacity: 0.3;
+  }
+  .section-header h2 {
+    font-size: 18pt;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .section-header .section-sub {
+    font-size: 11pt;
+    opacity: 0.85;
+  }
+
+  /* ===== 內文 ===== */
+  .content { padding: 0 8px; }
+  h3 {
+    font-size: 13pt;
+    color: #1a5276;
+    border-left: 4px solid #2980b9;
+    padding-left: 10px;
+    margin: 22px 0 10px 0;
+  }
+  p { margin-bottom: 10px; text-align: justify; }
+  strong { color: #1a5276; }
+  .highlight-box {
+    background: #eaf2f8;
+    border-left: 4px solid #2980b9;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 10.5pt;
+  }
+  .quote-box {
+    background: #fef9e7;
+    border-left: 4px solid #f39c12;
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-style: italic;
+    font-size: 10.5pt;
+  }
+
+  /* ===== 表格 ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  th {
+    background: #1a5276;
+    color: #fff;
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 10px;
+  }
+  tr:nth-child(even) td { background: #f8f9fa; }
+
+  /* ===== 影片佐證卡片 ===== */
+  .video-evidence {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .video-card {
+    width: calc(50% - 6px);
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    page-break-inside: avoid;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .video-card img.thumb {
+    width: 160px;
+    height: 90px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .video-card .card-body {
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+  }
+  .video-card .card-title {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1a5276;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .video-card .card-desc {
+    font-size: 8pt;
+    color: #666;
+    line-height: 1.3;
+  }
+  .video-card img.qr {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    align-self: center;
+    margin: 4px 6px;
+  }
+
+  /* ===== 單張大卡 ===== */
+  .video-card-full {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    page-break-inside: avoid;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin: 10px 0;
+  }
+  .video-card-full img.thumb {
+    width: 200px;
+    height: 112px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  .video-card-full .card-body {
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+  }
+  .video-card-full .card-title {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1a5276;
+    margin-bottom: 4px;
+  }
+  .video-card-full .card-desc {
+    font-size: 9pt;
+    color: #666;
+    line-height: 1.4;
+  }
+  .video-card-full img.qr {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+    align-self: center;
+    margin: 8px 10px;
+  }
+
+  /* ===== 數據亮點 ===== */
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .stat-box {
+    flex: 1;
+    background: #eaf2f8;
+    border-radius: 6px;
+    padding: 14px;
+    text-align: center;
+  }
+  .stat-box .num {
+    font-size: 22pt;
+    font-weight: 900;
+    color: #1a5276;
+    display: block;
+  }
+  .stat-box .label {
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* ===== 流程圖 ===== */
+  .flow-chart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 16px 0;
+  }
+  .flow-step {
+    background: #1a5276;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 9pt;
+    font-weight: 600;
+    text-align: center;
+  }
+  .flow-arrow {
+    font-size: 14pt;
+    color: #2980b9;
+    margin: 0 4px;
+  }
+
+  /* ===== 信念總結 ===== */
+  .belief-section {
+    page-break-before: always;
+    padding-top: 20px;
+  }
+  .belief-section h2 {
+    font-size: 18pt;
+    color: #1a5276;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .belief-grid {
+    display: flex;
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .belief-card {
+    flex: 1;
+    background: #f8f9fa;
+    border-top: 4px solid #2980b9;
+    padding: 16px;
+    border-radius: 0 0 6px 6px;
+  }
+  .belief-card h4 {
+    color: #1a5276;
+    font-size: 11pt;
+    margin-bottom: 8px;
+  }
+  .belief-card p {
+    font-size: 9.5pt;
+    color: #555;
+    line-height: 1.6;
+  }
+  .final-quote {
+    background: linear-gradient(135deg, #1a5276, #2980b9);
+    color: #fff;
+    padding: 24px 32px;
+    border-radius: 8px;
+    margin: 30px 0;
+    text-align: center;
+    font-size: 11pt;
+    line-height: 1.9;
+  }
+
+  /* ===== 獎項時間軸 ===== */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    margin: 14px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #2980b9;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 16px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    background: #2980b9;
+    border-radius: 50%;
+  }
+  .timeline-year {
+    font-weight: 700;
+    color: #1a5276;
+    font-size: 10pt;
+  }
+  .timeline-desc {
+    font-size: 10pt;
+    color: #444;
+  }
+
+  /* ===== 印刷提示 ===== */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-header { -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 封面 ==================== -->
+<div class="cover">
+  <h1>SUPER 教師</h1>
+  <div class="subtitle">全國決選書面資料</div>
+
+  <div class="info-table">
+    <div><span class="label">姓　　名</span>（請填入本名）</div>
+    <div><span class="label">服務學校</span>新竹市立光武國中</div>
+    <div><span class="label">任教科目</span>國中數學（七、八、九年級）</div>
+    <div><span class="label">任教年資</span>17 年（代理 4 年 ＋ 正式 13 年）</div>
+    <div><span class="label">導師經歷</span>完整帶過四屆導師班、一屆科資班</div>
+  </div>
+
+  <div class="tagline">
+    「我是一個把教育直覺拆成可操作系統、用身體力行取代口頭說教、<br>
+    相信種子會發芽的長期主義教育工作者。」
+  </div>
+</div>
+
+<!-- ==================== S — 超策略 ==================== -->
+<div class="section-header">
+  <div class="letter">S</div>
+  <h2>超策略 Strategy</h2>
+  <div class="section-sub">把模糊變成系統，讓好的教學可以被複製</div>
+</div>
+
+<div class="content">
+  <p>我的教學核心策略是「拆解」——模糊的東西沒辦法教，也沒辦法複製。只有拆成步驟，才能讓每一個人都做到。</p>
+
+  <h3>一、拆解數位教學：PIDS 心法</h3>
+  <p>面對「數位教學怎麼做？」這個模糊的命題，我不說「用 AI 教學就對了」，而是將數位教學拆解為三個維度——<strong>數位力（Digital）、互動力（Interaction）、視覺力（Presentation）</strong>，搭配 TPACK 與 SAMR 理論模型，形成一套任何老師都能上手的框架。這套心法被系統化為「數位教學十講」系列影片，從硬體盤點到 AI 評量，完整建構十個階段的學習路徑。</p>
+
+  <div class="video-card-full">
+    <img class="thumb" src="https://img.youtube.com/vi/o744iYaoF80/hqdefault.jpg" alt="數位教學十講">
+    <div class="card-body">
+      <div class="card-title">📺 數位教學十講（完整 10 集系列）</div>
+      <div class="card-desc">從硬體盤點、PIDS 心法、TPACK / SAMR 模型、AI 搜索檢索生成、差異化教學到總結性評量，完整建構數位教學知識體系。</div>
+    </div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://www.youtube.com/playlist?list=PLkNQUBglz8ExG3TEWQXU5dB8eBMDb1kzs" alt="QR">
+  </div>
+
+  <h3>二、拆解 AI 應用：搜索、檢索、生成三層邏輯</h3>
+  <p>多數老師的 AI 焦慮來自「不知道該學哪個工具」。我用<strong>第一性原理</strong>將所有 AI 任務歸納為三種本質需求：<strong>搜索</strong>（我不知道答案）、<strong>檢索</strong>（我有資料要找東西）、<strong>生成</strong>（我要產出新內容）。工具會半年換一輪，但這三個本質需求永遠不變。掌握本質，就不會被工具更新焦慮綁架。</p>
+
+  <h3>三、拆解教師成長：魚、釣魚、養魚三層進化</h3>
+  <p>我在教師研習中提出「吃魚→釣魚→養魚」的進化路徑：會「用」工具只是吃魚，會「選」工具是釣魚，會「建系統」才是養魚。例如我將段考出題流程系統化為包含 Bloom 認知層次分類與雙向細目表的自動化工具，一句話就能觸發完整的命題流程——一次建好，終身受用，還能分享給所有老師。</p>
+
+  <div class="flow-chart">
+    <div class="flow-step">🐟 吃魚<br><small>會「用」工具</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🎣 釣魚<br><small>會「選」工具</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🏗️ 養魚<br><small>會「建」系統</small></div>
+  </div>
+</div>
+
+<!-- ==================== U — 超獨特 ==================== -->
+<div class="section-header">
+  <div class="letter">U</div>
+  <h2>超獨特 Unique</h2>
+  <div class="section-sub">數學老師 × AI 教育 × 自媒體，三位一體的教育實踐者</div>
+</div>
+
+<div class="content">
+  <h3>一、用 YouTube 建立台灣教師 AI 應用知識庫</h3>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <span class="num">261 萬</span>
+      <span class="label">累積觀看次數</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">14 萬小時</span>
+      <span class="label">觀看時間</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">5.6 萬</span>
+      <span class="label">訂閱人數</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">23,333</span>
+      <span class="label">等同研習人天<br><small>（14萬hr ÷ 6hr/天）</small></span>
+    </div>
+  </div>
+
+  <p>若以一位教師一天六小時的研習時數計算，14 萬小時觀看時間等同於 <strong>23,333 人天的教師研習</strong>——這是任何單場研習都無法企及的影響規模。頻道內容涵蓋四大完整系列：</p>
+
+  <table>
+    <tr><th>系列</th><th>集數</th><th>定位</th></tr>
+    <tr><td>數位教學十講</td><td>10 集</td><td>從硬體到 AI 評量的完整教學理論框架</td></tr>
+    <tr><td>Google AI 基本功</td><td>6 集</td><td>Google AI 生態系的實用教學</td></tr>
+    <tr><td>NotebookLM 系列</td><td>7 集</td><td>從基礎到進階的 AI 工具完整攻略</td></tr>
+    <tr><td>班級經營</td><td>10 集</td><td>體驗教育與師生關係的真實記錄</td></tr>
+    <tr><td>Claude 基本功</td><td>持續中</td><td>Claude AI 全生態教學</td></tr>
+  </table>
+
+  <p>這些不是零散的工具介紹，而是有系統的知識體系建構。</p>
+
+  <h3>二、將教學方法論轉化為可分享的 AI 工具</h3>
+  <p>我不只教別人用 AI，更將自己的教學專業轉化為 AI 可執行的系統：</p>
+  <ul style="margin: 8px 0 8px 20px; font-size: 10.5pt;">
+    <li>將<strong>認知科學與大腦學習理論</strong>整合為 AI 教學簡報工作流，讓任何老師都能產出符合學生認知歷程的簡報</li>
+    <li>將段考命題專業建構為含 <strong>Bloom 認知分類 + 雙向細目表</strong>的自動化出題系統</li>
+    <li>將 AI 搜索/檢索/生成三層框架，變成可教給任何人的思考模型</li>
+  </ul>
+
+  <div class="quote-box">好的東西如果只存在一個人的腦袋裡，就只能幫助一個人。變成系統，才能幫助所有人。</div>
+
+  <h3>三、獲獎與受邀紀錄</h3>
+
+  <div style="display: flex; gap: 20px;">
+    <div style="flex: 1;">
+      <p style="font-weight:700; color:#1a5276; margin-bottom: 8px;">🏆 獎項榮譽</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-year">2023</span>
+          <span class="timeline-desc">新竹市<strong>竹塹菁師獎</strong></span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2023</span>
+          <span class="timeline-desc">新竹市<strong>傑出導師</strong></span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2023</span>
+          <span class="timeline-desc">第三屆創新教案<strong>評審</strong></span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2022</span>
+          <span class="timeline-desc">第二屆創新教案<strong>優選</strong></span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2021</span>
+          <span class="timeline-desc">第一屆創新教案<strong>佳作</strong></span>
+        </div>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-weight:700; color:#1a5276; margin-bottom: 8px;">🎤 受邀講者</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-year">2021 / 2025</span>
+          <span class="timeline-desc"><strong>親子天下年會</strong>（兩度受邀）</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2021–2023</span>
+          <span class="timeline-desc"><strong>教育科技展</strong>（連續三年）</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2022–2023</span>
+          <span class="timeline-desc"><strong>優派年會</strong>講者</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">2023</span>
+          <span class="timeline-desc"><strong>教科書展沙龍</strong>講者</span>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-year">長年</span>
+          <span class="timeline-desc">各縣市輔導團培訓＋各大出版社研習<br><strong>累計超過 100 場</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top: 10px;"><strong>創新教案主題：</strong>以<strong>高互動數位教學</strong>為核心，將數位工具融入數學課堂，設計能提升學生參與度與學習成效的互動教學模式。</p>
+  <p>從「參賽得獎」到「受邀擔任評審」，從「校內分享」到「全國年會講者」，從「單場研習」到「累計超過百場」，這不只是個人成長的軌跡，更證明了系統化教學方法的可推廣性。</p>
+</div>
+
+<!-- ==================== P — 超熱情 ==================== -->
+<div class="section-header">
+  <div class="letter">P</div>
+  <h2>超熱情 Passion</h2>
+  <div class="section-sub">不站在終點等，站在過程裡</div>
+</div>
+
+<div class="content">
+  <h3>一、全程陪跑的馬拉松教育</h3>
+  <p><strong>每一屆導師班</strong>我都帶全班挑戰遠東馬拉松 22 公里——不是某一屆的特殊活動，而是我帶班的標配。不是站在終點拍照的老師，而是<strong>全程陪跑</strong>的老師。學生從「連四圈都跑不完」到完成 22K，從「想轉班」到「這是一輩子難忘的革命情感」。</p>
+  <p>更重要的是，馬拉松的毅力成功<strong>遷移到學業</strong>——學生說：「我連馬拉松都跑完了，讀書這點辛苦也能堅持。」上課專注力更集中，讀書不再覺得那麼困難。</p>
+
+  <div class="video-evidence">
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/FH1ALBY-xv8/hqdefault.jpg" alt="22K">
+      <div class="card-body">
+        <div class="card-title">科資班 22K 超半馬挑戰</div>
+        <div class="card-desc">師生共跑全紀錄與賽後訪談</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/FH1ALBY-xv8" alt="QR">
+    </div>
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/zr-zTYgVHIg/hqdefault.jpg" alt="馬拉松">
+      <div class="card-body">
+        <div class="card-title">從抗拒到完賽的 22K 挑戰</div>
+        <div class="card-desc">學生心聲：意志力遷移到學業</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/zr-zTYgVHIg" alt="QR">
+    </div>
+  </div>
+
+  <h3>二、帶學生回自己的母校做偏鄉服務</h3>
+  <p>我先後帶了<strong>兩屆學生</strong>——一屆普通班、一屆科資班——回到台東新港國中，我自己的母校，進行服務學習與城鄉交流。學生分組準備主題報告，向偏鄉學弟妹展示數位工具和 AI 在數學上的應用。過程中學生打破了「偏鄉等於落後」的刻板印象，更體會到「收穫最大的是擺攤位的人」——服務者的成長永遠大於被服務者。</p>
+
+  <div class="video-evidence">
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/jb5qJ5itXfY/hqdefault.jpg" alt="偏鄉服務">
+      <div class="card-body">
+        <div class="card-title">偏鄉服務學習與城鄉交流</div>
+        <div class="card-desc">帶科資班回母校，用 AI 教數學</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/jb5qJ5itXfY" alt="QR">
+    </div>
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/TnIoqfc9MGI/hqdefault.jpg" alt="衝浪">
+      <div class="card-body">
+        <div class="card-title">台東衝浪與三仙台</div>
+        <div class="card-desc">體驗學習：創造羈絆與心境成長</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/TnIoqfc9MGI" alt="QR">
+    </div>
+  </div>
+
+  <h3>三、疫情期間的 156 支教學影片</h3>
+  <p>疫情爆發第二天，我走進教務處被老師問了兩小時同樣的問題：「Google Meet 怎麼開？」我決定不再一個一個教，而是開始錄影片。短短幾個月內產出<strong>公開影片 36 部 + 學生課程影片 120 部</strong>。其中一支「學生如何拍照上傳作業」的影片獲得 <strong>8 萬次觀看</strong>。</p>
+  <p>不會要求學生做自己不做的事。不會要求老師用自己不用的工具。<strong>身教的可信度永遠大於言教。</strong></p>
+
+  <div class="video-card-full">
+    <img class="thumb" src="https://img.youtube.com/vi/RN8jghAFJ_0/hqdefault.jpg" alt="線上教學">
+    <div class="card-body">
+      <div class="card-title">📺 線上教學的三個故事</div>
+      <div class="card-desc">疫情教學紀錄：從被問到拍影片、數學魔術親子互動、良善迴圈的起點。一支影片觀看 8 萬次 = 1,200 位老師 × 6 小時研習。</div>
+    </div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/RN8jghAFJ_0" alt="QR">
+  </div>
+</div>
+
+<!-- ==================== E — 超效能 ==================== -->
+<div class="section-header">
+  <div class="letter">E</div>
+  <h2>超效能 Efficiency</h2>
+  <div class="section-sub">一次投入，持續發酵的教育效益</div>
+</div>
+
+<div class="content">
+  <h3>一、從一間教室到兩萬三千人天</h3>
+
+  <div class="highlight-box">
+    <strong>傳統研習：</strong>1 位講師 × 1 場 × 50 人 × 6 小時 = <strong>50 人天</strong><br>
+    <strong>YouTube 頻道：</strong>14 萬小時觀看 ÷ 6 小時 = <strong>23,333 人天</strong>　←　差距 466 倍
+  </div>
+
+  <p>這不是刻意追求流量，而是「把好的東西系統化」的自然結果。當教學經驗被拆解成可複製的框架、錄製成影片、轉化為 AI 工具，一次投入就能持續幫助更多人。</p>
+
+  <h3>二、受邀研習與講座的擴散效應</h3>
+  <p>每一場研習都不只是「教工具」，而是教<strong>思維框架</strong>——第一性原理、搜索/檢索/生成、魚/釣魚/養魚——讓老師帶走的不是一個會過時的技巧，而是一套不會過時的判斷能力。</p>
+
+  <div class="stats-row">
+    <div class="stat-box">
+      <span class="num">100+</span>
+      <span class="label">研習場次</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">2 次</span>
+      <span class="label">親子天下年會</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">3 年</span>
+      <span class="label">連續教育科技展</span>
+    </div>
+    <div class="stat-box">
+      <span class="num">5.6 萬</span>
+      <span class="label">YouTube 訂閱</span>
+    </div>
+  </div>
+
+  <h3>三、段考命題的系統化效能</h3>
+  <p>將命題專業建構為自動化系統後，一次出題即可同時產出：題目卷（含 Bloom 認知層次標註）、答案卷（含詳解）、雙向細目表。品質一致、格式規範，讓命題從「每次重新來過」變成「系統化的專業流程」。</p>
+
+  <div class="video-evidence">
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/aQEdqtgK47M/hqdefault.jpg" alt="GoogleAI">
+      <div class="card-body">
+        <div class="card-title">Google AI 基本功（6 集系列）</div>
+        <div class="card-desc">Google AI 生態系的完整實用教學</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/aQEdqtgK47M" alt="QR">
+    </div>
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/luRFvHW0SF8/hqdefault.jpg" alt="Claude">
+      <div class="card-body">
+        <div class="card-title">Claude 基本功 EP01</div>
+        <div class="card-desc">一次搞懂 Claude 全生態</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/luRFvHW0SF8" alt="QR">
+    </div>
+  </div>
+</div>
+
+<!-- ==================== R — 超感應 ==================== -->
+<div class="section-header">
+  <div class="letter">R</div>
+  <h2>超感應 Responsiveness</h2>
+  <div class="section-sub">播種子的人，相信種子會發芽</div>
+</div>
+
+<div class="content">
+  <h3>一、時光膠囊——跨越三年的師生連結</h3>
+  <p>新生訓練第一天，我錄下每位學生的影像。三年後畢業典禮，播放這段時光膠囊。串起三年的成長弧線，讓學生看見自己的改變。這不是技術，是<strong>對時間的信仰</strong>——教育的效果不在當下，在未來。</p>
+
+  <div class="video-card-full">
+    <img class="thumb" src="https://img.youtube.com/vi/kn65yHOM6_4/hqdefault.jpg" alt="時光膠囊">
+    <div class="card-body">
+      <div class="card-title">📺 時光膠囊：新生訓練寄給畢業的你</div>
+      <div class="card-desc">國一第一天的錄影，三年後畢業典禮播放。跨越時空的師生連結。</div>
+    </div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/kn65yHOM6_4" alt="QR">
+  </div>
+
+  <h3>二、良善的迴圈——一個實習老師的故事</h3>
+  <p>國一那年，一位實習老師離開前對班上說想去偏鄉當老師。我錄下了這段話。國三那年，她真的去了花蓮偏鄉，我邀請她透過視訊回來對學生分享。她說了「穿越時空的五個禮物」，最動人的是「無懼的靈魂」。</p>
+  <p>一個看似無心的記錄，變成了良善的迴圈：講者錄下故事 → 實習老師回來分享 → 感動了學生 → 影片又激勵了更多老師。<strong>記錄是最好的投資，良善會迴圈。</strong></p>
+
+  <div class="video-card-full">
+    <img class="thumb" src="https://img.youtube.com/vi/AH8Nc8wvrGw/hqdefault.jpg" alt="偏鄉故事">
+    <div class="card-body">
+      <div class="card-title">📺 一個年輕老師去偏鄉的故事</div>
+      <div class="card-desc">良善迴圈的完整記錄：從實習老師的夢想，到跨越時空的視訊分享。</div>
+    </div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/AH8Nc8wvrGw" alt="QR">
+  </div>
+
+  <h3>三、畢業致詞——送給學生的六個禮物</h3>
+  <p>在台灣最東邊的燈塔，我對科資班說了六個畢業禮物：</p>
+
+  <table>
+    <tr><th>#</th><th>禮物</th><th>核心訊息</th></tr>
+    <tr><td>1</td><td><strong>以身作則</strong></td><td>行動勝於言語</td></tr>
+    <tr><td>2</td><td><strong>態度帶來貴人</strong></td><td>禮貌、善良吸引貴人</td></tr>
+    <tr><td>3</td><td><strong>珍惜與感謝</strong></td><td>沒有人應該為你做什麼</td></tr>
+    <tr><td>4</td><td><strong>信念</strong></td><td>痛苦時能堅持的力量</td></tr>
+    <tr><td>5</td><td><strong>非認知技能</strong></td><td>AI 時代比的是好奇心、毅力、責任感</td></tr>
+    <tr><td>6</td><td><strong>身邊的人</strong></td><td>同學和老師是最棒的禮物</td></tr>
+  </table>
+
+  <div class="video-card-full">
+    <img class="thumb" src="https://img.youtube.com/vi/P89ty5IpA58/hqdefault.jpg" alt="畢業致詞">
+    <div class="card-body">
+      <div class="card-title">📺 畢業致詞：送給學生的六個禮物</div>
+      <div class="card-desc">在台灣最東邊的燈塔，傳達三年來最想教會學生的人生態度。</div>
+    </div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/P89ty5IpA58" alt="QR">
+  </div>
+
+  <h3>四、體驗學習的底層邏輯</h3>
+  <p>在 AI 取代認知技能的時代，我最在乎的反而是那些 AI 取代不了的東西：好奇心、毅力、責任感、羈絆。所有活動背後都有同一套邏輯：</p>
+
+  <div class="flow-chart">
+    <div class="flow-step">設計「夠困難」<br>的挑戰</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">全程陪伴<br>（不旁觀）</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">同儕扶持<br>＋老師指導</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">完成挑戰<br>＝記憶點</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">毅力遷移<br>學業與人生</div>
+  </div>
+
+  <div class="quote-box">困難的事才有記憶點。記憶點越多，人生越充實。體驗不能被講述取代。</div>
+
+  <div class="video-evidence">
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/11TaUNoDjFg/hqdefault.jpg" alt="親師座談">
+      <div class="card-body">
+        <div class="card-title">親師座談會與帶班理念</div>
+        <div class="card-desc">家長＝神隊友的合作共育理念</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/11TaUNoDjFg" alt="QR">
+    </div>
+    <div class="video-card">
+      <img class="thumb" src="https://img.youtube.com/vi/P89ty5IpA58/hqdefault.jpg" alt="畢業致詞">
+      <div class="card-body">
+        <div class="card-title">班級經營系列（完整 10 集）</div>
+        <div class="card-desc">體驗教育與師生關係的真實記錄</div>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/11TaUNoDjFg" alt="QR">
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 教育信念總結 ==================== -->
+<div class="belief-section">
+  <h2>教育信念總結</h2>
+
+  <div class="belief-grid">
+    <div class="belief-card">
+      <h4>🧠 怎麼教</h4>
+      <p>先想教什麼<br>→ 再想怎麼教<br>→ 最後才呈現<br><br>拆解 → 步驟化<br>模糊 → 可操作<br>理論 → 實例</p>
+    </div>
+    <div class="belief-card">
+      <h4>🤝 怎麼帶人</h4>
+      <p>讓他自己經歷<br>→ 不替他做決定<br>→ 陪伴不旁觀<br><br>體驗 → 反思<br>痛苦 → 記憶點<br>共同經歷 → 羈絆</p>
+    </div>
+    <div class="belief-card">
+      <h4>⚙️ 怎麼做事</h4>
+      <p>做完就系統化<br>→ 讓別人也能用<br><br>個案 → 框架<br>直覺 → 可複製<br>一次 → 永久</p>
+    </div>
+  </div>
+
+  <div class="highlight-box" style="text-align: center; font-size: 12pt; font-weight: 700; color: #1a5276;">
+    人的價值 ＞ 工具的價值 ＞ 效率的價值<br>
+    「AI 取代認知技能，但取代不了非認知技能」
+  </div>
+
+  <div class="final-quote">
+    我是一個把教育直覺拆成可操作系統、用身體力行取代口頭說教、<br>
+    相信種子會發芽的長期主義教育工作者。<br><br>
+    不是天才型的老師，而是<strong>系統型</strong>的老師——<br>
+    把每一次的經驗都轉化為可傳承的框架，<br>
+    讓好的教學不只停留在一間教室裡。
+  </div>
+</div>
+
+</body>
+</html>
