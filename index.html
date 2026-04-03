@@ -152,11 +152,30 @@
     flex-direction: row;
     align-items: stretch;
   }
+  .video-card a.thumb-link {
+    width: 160px;
+    flex-shrink: 0;
+    display: block;
+    position: relative;
+  }
+  .video-card a.thumb-link::after {
+    content: '▶';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .video-card a.thumb-link:hover::after { opacity: 1; }
   .video-card img.thumb {
     width: 160px;
     height: 90px;
     object-fit: cover;
-    flex-shrink: 0;
+    display: block;
   }
   .video-card .card-body {
     padding: 6px 10px;
@@ -197,11 +216,30 @@
     align-items: stretch;
     margin: 10px 0;
   }
+  .video-card-full a.thumb-link {
+    width: 200px;
+    flex-shrink: 0;
+    display: block;
+    position: relative;
+  }
+  .video-card-full a.thumb-link::after {
+    content: '▶';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .video-card-full a.thumb-link:hover::after { opacity: 1; }
   .video-card-full img.thumb {
     width: 200px;
     height: 112px;
     object-fit: cover;
-    flex-shrink: 0;
+    display: block;
   }
   .video-card-full .card-body {
     padding: 8px 14px;
@@ -748,12 +786,12 @@
       <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/11TaUNoDjFg" alt="QR">
     </div>
     <div class="video-card">
-      <img class="thumb" src="https://img.youtube.com/vi/P89ty5IpA58/hqdefault.jpg" alt="畢業致詞">
+      <img class="thumb" src="https://img.youtube.com/vi/W90NxQ2Xw6k/hqdefault.jpg" alt="造舟">
       <div class="card-body">
-        <div class="card-title">班級經營系列（完整 10 集）</div>
-        <div class="card-desc">體驗教育與師生關係的真實記錄</div>
+        <div class="card-title">長濱國中造舟課程參訪</div>
+        <div class="card-desc">親手做的船真的下海：航向自己的未來</div>
       </div>
-      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/11TaUNoDjFg" alt="QR">
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://youtu.be/W90NxQ2Xw6k" alt="QR">
     </div>
   </div>
 </div>
@@ -791,5 +829,26 @@
   </div>
 </div>
 
+<script>
+// 網頁版：自動為所有影片封面圖加上可點擊連結
+document.querySelectorAll('.video-card, .video-card-full').forEach(card => {
+  const thumb = card.querySelector('img.thumb');
+  const qr = card.querySelector('img.qr');
+  if (!thumb || !qr) return;
+  // 從 QR Code URL 中提取影片網址
+  const qrSrc = qr.getAttribute('src');
+  const match = qrSrc.match(/data=([^&]+)/);
+  if (!match) return;
+  const videoUrl = decodeURIComponent(match[1]);
+  // 用 <a> 包住封面圖
+  const link = document.createElement('a');
+  link.href = videoUrl;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.className = 'thumb-link';
+  thumb.parentNode.insertBefore(link, thumb);
+  link.appendChild(thumb);
+});
+</script>
 </body>
 </html>
